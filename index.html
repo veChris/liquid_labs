@@ -98,6 +98,69 @@
 
     .nav-cta:hover { opacity: 0.85 !important; }
 
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 58px; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(243,241,235,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 7% 20px;
+      flex-direction: column;
+      gap: 4px;
+      transform: translateY(-8px);
+      opacity: 0;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .mobile-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.15s;
+    }
+
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--navy); }
+
     /* ── HERO ── */
     .hero {
       position: relative;
@@ -213,6 +276,22 @@
       max-width: 460px;
     }
 
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
     /* ── PRODUCTS ── */
     .products-grid {
       display: grid;
@@ -229,6 +308,11 @@
     .product-card {
       background: var(--cream);
       padding: 40px;
+      transition: background 0.2s;
+    }
+
+    .product-card:hover {
+      background: #EFEDE6;
     }
 
     .product-mark {
@@ -264,6 +348,11 @@
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 9px 14px;
+      transition: border-color 0.2s;
+    }
+
+    .product-card:hover .token-row {
+      border-color: rgba(27,40,87,0.22);
     }
 
     .token-name {
@@ -336,6 +425,7 @@
       line-height: 1.7;
     }
 
+    /* ── STATS GRID ── */
     .team-stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -350,7 +440,10 @@
     .team-stat {
       background: var(--cream);
       padding: 28px 24px;
+      transition: background 0.2s;
     }
+
+    .team-stat:hover { background: #EFEDE6; }
 
     .team-stat-value {
       font-family: 'Space Grotesk', sans-serif;
@@ -359,6 +452,8 @@
       color: var(--text);
       letter-spacing: -0.04em;
       margin-bottom: 3px;
+      /* prevent layout shift during count-up */
+      min-height: 2.2rem;
     }
 
     .team-stat-label {
@@ -448,6 +543,7 @@
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
       .team-inner { grid-template-columns: 1fr; gap: 48px; }
       footer { flex-direction: column; align-items: flex-start; }
     }
@@ -480,7 +576,18 @@
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="navigation">
+    <a href="#products" class="mobile-link">Products</a>
+    <a href="#team" class="mobile-link">Team</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="mobile-link">LinkedIn</a>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -515,7 +622,7 @@
 
   <!-- PRODUCTS -->
   <section id="products">
-    <div style="text-align:center; margin-bottom: 0;">
+    <div class="reveal" style="text-align:center; margin-bottom: 0;">
       <p class="section-eyebrow">Protocols</p>
       <h2 class="section-title">Two Protocols. One Vision.</h2>
       <p class="section-sub" style="margin: 0 auto;">Purpose-built infrastructure that unlocks yield without sacrificing liquidity.</p>
@@ -524,7 +631,7 @@
     <div class="products-grid">
 
       <!-- SWELL -->
-      <div class="product-card">
+      <div class="product-card reveal reveal-delay-1">
         <div class="product-mark">
           <svg width="40" height="40" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M48.8564 30.9017L48.792 30.9694C48.7619 31.0005 48.7314 31.0314 48.7006 31.0621L31.0382 48.6961C27.9614 51.768 22.9729 51.768 19.8961 48.6961L15.0186 43.8267C14.6728 43.4828 14.6721 42.9236 15.0163 42.5782C15.1176 42.4766 15.2421 42.4012 15.379 42.3584C20.6069 40.7446 24.8548 38.8817 28.1225 36.7699C35.9047 31.7403 42.816 29.7843 48.8564 30.9017ZM45.1535 16.3958C51.6746 18.4507 50.9135 23.2479 51 25.1391C43.8584 21.3943 35.2669 22.7669 25.2254 29.2566C17.741 34.0937 11.4716 36.088 6.41729 35.2395C1.36298 34.391 0.226028 28.2183 0 26.578C5.55377 29.3861 12.9966 27.7744 22.3283 21.7434C31.024 16.1235 38.6324 14.3409 45.1535 16.3958ZM31.0382 2.30389L35.6212 6.87887C35.9664 7.2233 35.9669 7.78255 35.6225 8.12778C35.4996 8.25096 35.3431 8.33506 35.1726 8.36942C28.538 9.706 23.232 11.6596 19.2546 14.2302C12.4389 18.6351 6.63077 20.6825 1.83029 20.3724L1.83081 20.3711L19.8961 2.30389C22.9729 -0.767963 27.9614 -0.767963 31.0382 2.30389Z" fill="url(#swell-grad)"/>
@@ -552,7 +659,7 @@
       </div>
 
       <!-- HYPERWAVE -->
-      <div class="product-card">
+      <div class="product-card reveal reveal-delay-2">
         <div class="product-mark">
           <!-- Hyperwave icon: overlapping circles mark, cropped to icon area -->
           <svg width="40" height="40" viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -591,7 +698,7 @@
   <!-- TEAM -->
   <section id="team">
     <div class="team-inner">
-      <div>
+      <div class="reveal">
         <p class="section-eyebrow">The Team</p>
         <h2 class="section-title">Built by engineers,<br/>for builders.</h2>
         <p class="section-sub">A distributed team of engineers and researchers spanning the globe — shipping infrastructure that the next generation of finance will run on.</p>
@@ -603,14 +710,24 @@
         </div>
       </div>
 
-      <div class="team-stat-grid">
-        <div class="team-stat">
-          <div class="team-stat-value">19</div>
-          <div class="team-stat-label">Team members</div>
-        </div>
-        <div class="team-stat">
-          <div class="team-stat-value">2</div>
-          <div class="team-stat-label">Live protocols</div>
+      <div class="reveal reveal-delay-1">
+        <div class="team-stat-grid" id="stat-grid">
+          <div class="team-stat">
+            <div class="team-stat-value" data-target="1.5" data-prefix="$" data-suffix="B+">$1.5B+</div>
+            <div class="team-stat-label">Total ecosystem value</div>
+          </div>
+          <div class="team-stat">
+            <div class="team-stat-value" data-target="2" data-suffix="">2</div>
+            <div class="team-stat-label">Live protocols</div>
+          </div>
+          <div class="team-stat">
+            <div class="team-stat-value" data-target="19" data-suffix="">19</div>
+            <div class="team-stat-label">Team members</div>
+          </div>
+          <div class="team-stat">
+            <div class="team-stat-value" data-target="4" data-suffix="">4</div>
+            <div class="team-stat-label">Years of shipping</div>
+          </div>
         </div>
       </div>
     </div>
@@ -619,7 +736,7 @@
   <hr class="divider" />
 
   <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <section class="contact reveal" id="contact">
     <div class="contact-inner">
       <p class="section-eyebrow">Get in touch</p>
       <h2>Work with us.</h2>
@@ -658,8 +775,7 @@
   </footer>
 
   <script>
-    // Physical wave simulation — multi-layer sine superposition
-    // in the brand palette (navy on cream).
+    // ── WAVE ANIMATION ──
     const canvas = document.getElementById('hero-wave');
     const ctx = canvas.getContext('2d');
     let W, H;
@@ -671,8 +787,6 @@
     window.addEventListener('resize', resize);
     resize();
 
-    // Layers vary in spatial freq, phase velocity, amplitude, and opacity.
-    // Using navy at low opacity so waves read on the cream background.
     const layers = [
       { vel: 0.30, freq: 0.0065, amp: 34, phase: 0.0, alpha: 0.07 },
       { vel: 0.18, freq: 0.0100, amp: 22, phase: 1.9, alpha: 0.06 },
@@ -682,7 +796,7 @@
     ];
 
     let t = 0;
-    const BASE = 0.52; // baseline at 52% of canvas height
+    const BASE = 0.52;
 
     function tick() {
       ctx.clearRect(0, 0, W, H);
@@ -693,7 +807,7 @@
         ctx.moveTo(0, H);
         for (let x = 0; x <= W; x += 2) {
           const y = H * BASE
-            + Math.sin(x * l.freq          + t * l.vel + l.phase)           * l.amp
+            + Math.sin(x * l.freq          + t * l.vel + l.phase)               * l.amp
             + Math.sin(x * l.freq * 1.91   + t * l.vel * 1.3  + l.phase + 1.1) * (l.amp * 0.36)
             + Math.sin(x * l.freq * 0.43   + t * l.vel * 0.58 + l.phase + 2.6) * (l.amp * 0.50);
           ctx.lineTo(x, y);
@@ -708,6 +822,74 @@
     }
 
     tick();
+
+    // ── MOBILE MENU ──
+    const hamburger = document.querySelector('.nav-hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close mobile menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // ── SCROLL REVEAL ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── ANIMATED STAT COUNTERS ──
+    function easeOutExpo(t) {
+      return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+    }
+
+    function animateStat(el) {
+      const target = parseFloat(el.dataset.target);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const isDecimal = !Number.isInteger(target);
+      const duration = 1400;
+      const start = performance.now();
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutExpo(progress);
+        const current = target * eased;
+        el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.team-stat-value[data-target]').forEach(animateStat);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statGrid = document.getElementById('stat-grid');
+    if (statGrid) statObserver.observe(statGrid);
   </script>
 </body>
 </html>
