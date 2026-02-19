@@ -233,12 +233,34 @@
 
     .btn-ghost:hover { border-color: rgba(27,40,87,0.35); transform: translateY(-1px); }
 
+    /* ── BACKGROUND WAVE ── */
+    #bg-wave {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     /* ── CANVAS WAVE ── */
     #hero-wave {
       position: absolute;
       bottom: 0; left: 0;
       width: 100%; height: 180px;
       pointer-events: none;
+    }
+
+    /* ── DROP FALL ANIMATION ── */
+    @keyframes drop-fall {
+      0%   { transform: translateY(-150px); opacity: 0; }
+      55%  { opacity: 1; }
+      74%  { transform: translateY(10px); }
+      89%  { transform: translateY(-5px); }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .hero-mark {
+      animation: drop-fall 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
     }
 
     /* ── DIVIDER ── */
@@ -593,6 +615,7 @@
 
   <!-- HERO -->
   <section class="hero">
+    <canvas id="bg-wave"></canvas>
     <!-- Drop mark (large) -->
     <div class="hero-mark">
       <svg width="72" height="88" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -745,7 +768,7 @@
       <p>We're a small, focused team. If you're building in DeFi or want to learn more about our protocols, we'd love to hear from you.</p>
       <div class="contact-btns">
         <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="btn-primary">LinkedIn</a>
-        <a href="mailto:hello@liquidlabs.io" class="btn-ghost">hello@liquidlabs.io</a>
+        <a href="mailto:info@liquid-labs.io" class="btn-ghost">info@liquid-labs.io</a>
       </div>
     </div>
   </section>
@@ -777,6 +800,44 @@
   </footer>
 
   <script>
+    // ── BACKGROUND WAVE ──
+    const bgCanvas = document.getElementById('bg-wave');
+    const bgCtx = bgCanvas.getContext('2d');
+    let BW, BH;
+
+    function bgResize() {
+      BW = bgCanvas.width  = bgCanvas.offsetWidth;
+      BH = bgCanvas.height = bgCanvas.offsetHeight;
+    }
+    window.addEventListener('resize', bgResize);
+    bgResize();
+
+    const bgLayers = [
+      { vel: 0.06, freq: 0.0050, amp: 32, phase: 0.0, y: 0.28, alpha: 0.040 },
+      { vel: 0.04, freq: 0.0035, amp: 24, phase: 2.3, y: 0.50, alpha: 0.030 },
+      { vel: 0.09, freq: 0.0072, amp: 18, phase: 4.1, y: 0.72, alpha: 0.025 },
+    ];
+
+    let bt = 0;
+    function bgTick() {
+      bgCtx.clearRect(0, 0, BW, BH);
+      bt += 0.003;
+      bgLayers.forEach(l => {
+        bgCtx.beginPath();
+        for (let x = 0; x <= BW; x += 3) {
+          const y = BH * l.y
+            + Math.sin(x * l.freq + bt * l.vel + l.phase) * l.amp
+            + Math.sin(x * l.freq * 2.0 + bt * l.vel * 1.3 + l.phase + 1.2) * (l.amp * 0.38);
+          x === 0 ? bgCtx.moveTo(x, y) : bgCtx.lineTo(x, y);
+        }
+        bgCtx.strokeStyle = `rgba(27,40,87,${l.alpha})`;
+        bgCtx.lineWidth = 1.5;
+        bgCtx.stroke();
+      });
+      requestAnimationFrame(bgTick);
+    }
+    bgTick();
+
     // ── WAVE ANIMATION ──
     const canvas = document.getElementById('hero-wave');
     const ctx = canvas.getContext('2d');
