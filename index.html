@@ -570,6 +570,92 @@
       color: var(--muted);
     }
 
+    /* ── STATS — 5th stat spans full width ── */
+    .team-stat-grid .team-stat:nth-child(5) {
+      grid-column: 1 / -1;
+    }
+
+    /* ── AUDITED BY ── */
+    .audited-by {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding-top: 32px;
+    }
+
+    .audited-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .audit-logos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .audit-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 12px 6px 8px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--cream);
+    }
+
+    .audit-chip img {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+    }
+
+    /* ── PARTNERS ── */
+    .partners-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .partners-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .partner-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text);
+      background: var(--cream);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .partner-chip:hover {
+      background: #EFEDE6;
+      border-color: rgba(27,40,87,0.25);
+    }
+
+    .partner-chip img {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -731,10 +817,10 @@
         <div class="team-stat-grid" id="stat-grid">
           <div class="team-stat">
             <div class="team-stat-value" data-target="1.5" data-prefix="$" data-suffix="B+">$1.5B+</div>
-            <div class="team-stat-label">Total ecosystem value</div>
+            <div class="team-stat-label">Peak TVL</div>
           </div>
           <div class="team-stat">
-            <div class="team-stat-value" data-target="2" data-suffix="">2</div>
+            <div class="team-stat-value" data-target="3" data-suffix="">3</div>
             <div class="team-stat-label">Live protocols</div>
           </div>
           <div class="team-stat">
@@ -745,7 +831,49 @@
             <div class="team-stat-value" data-target="4" data-suffix="">4</div>
             <div class="team-stat-label">Years of shipping</div>
           </div>
+          <div class="team-stat">
+            <div class="team-stat-value" data-target="8" data-suffix="">8</div>
+            <div class="team-stat-label">Security audits</div>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="audited-by reveal reveal-delay-2">
+      <p class="audited-label">Audited by</p>
+      <div class="audit-logos">
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=sigp.io&sz=32" alt="" />Sigma Prime</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=cyfrin.io&sz=32" alt="" />Cyfrin</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=runtimeverification.com&sz=32" alt="" />Runtime Verification</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=mixbytes.io&sz=32" alt="" />MixBytes</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=certik.com&sz=32" alt="" />CertiK</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=peckshield.com&sz=32" alt="" />PeckShield</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=chainsulting.de&sz=32" alt="" />Chainsulting</span>
+        <span class="audit-chip"><img src="https://www.google.com/s2/favicons?domain=slowmist.com&sz=32" alt="" />SlowMist</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PARTNERS -->
+  <section id="partners">
+    <div class="partners-inner">
+      <div class="reveal">
+        <p class="section-eyebrow">Ecosystem</p>
+        <h2 class="section-title">Built with the best.</h2>
+      </div>
+      <div class="partners-grid reveal reveal-delay-1">
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=eigenlayer.xyz&sz=32" alt="" />EigenLayer</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=ethena.fi&sz=32" alt="" />Ethena</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=ether.fi&sz=32" alt="" />EtherFi</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=symbiotic.fi&sz=32" alt="" />Symbiotic</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=layerzero.network&sz=32" alt="" />LayerZero</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=jumper.exchange&sz=32" alt="" />Jumper</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=chain.link&sz=32" alt="" />Chainlink</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=altlayer.io&sz=32" alt="" />AltLayer</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=hyperlane.xyz&sz=32" alt="" />Hyperlane</span>
+        <span class="partner-chip"><img src="https://www.google.com/s2/favicons?domain=pendle.finance&sz=32" alt="" />Pendle</span>
       </div>
     </div>
   </section>
