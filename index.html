@@ -313,6 +313,13 @@
       color: var(--text);
       margin-bottom: 3px;
     }
+    .founder-link {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid var(--navy);
+      transition: opacity 0.15s;
+    }
+    .founder-link:hover { opacity: 0.6; }
 
     .founder-role {
       font-size: 0.82rem;
@@ -572,12 +579,12 @@
       <div>
         <p class="section-eyebrow">The Team</p>
         <h2 class="section-title">Built by engineers,<br/>for builders.</h2>
-        <p class="section-sub">A focused team of engineers and researchers in Sydney, Australia — shipping infrastructure that the next generation of finance will run on.</p>
+        <p class="section-sub">A distributed team of engineers and researchers spanning the globe — shipping infrastructure that the next generation of finance will run on.</p>
 
         <div class="founder-block">
-          <div class="founder-name">Daniel Dizon</div>
-          <div class="founder-role">Founder & CEO</div>
-          <p class="founder-bio">Daniel founded Swell Labs in Sydney to build production-grade liquid staking infrastructure on Ethereum. He has led the protocol from inception to a $1.5B+ ecosystem.</p>
+          <div class="founder-name"><a href="https://www.linkedin.com/in/abishek-kannan" target="_blank" rel="noopener" class="founder-link">Abishek Kannan</a></div>
+          <div class="founder-role">CEO</div>
+          <p class="founder-bio">Abishek leads Liquid Labs, the team behind Swell and Hyperwave — two of Ethereum's most composable restaking protocols with a $1.5B+ ecosystem.</p>
         </div>
       </div>
 
@@ -589,14 +596,6 @@
         <div class="team-stat">
           <div class="team-stat-value">2</div>
           <div class="team-stat-label">Live protocols</div>
-        </div>
-        <div class="team-stat">
-          <div class="team-stat-value">ETH</div>
-          <div class="team-stat-label">Native asset</div>
-        </div>
-        <div class="team-stat">
-          <div class="team-stat-value">2024</div>
-          <div class="team-stat-label">Founded</div>
         </div>
       </div>
     </div>
@@ -640,7 +639,7 @@
       <li><a href="#team">Team</a></li>
       <li><a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener">LinkedIn</a></li>
     </ul>
-    <span class="footer-copy">© 2026 Liquid Labs · Sydney, Australia</span>
+    <span class="footer-copy">© 2026 Liquid Labs</span>
   </footer>
 
   <script>
