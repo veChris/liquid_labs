@@ -4,44 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Liquid Labs builds on-chain infrastructure for next-generation finance. Creators of Swell and Hyperwave." />
-  <meta name="theme-color" content="#ffffff" />
-  <!-- Open Graph -->
+  <meta name="theme-color" content="#F3F1EB" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Liquid Labs — On-Chain Infrastructure for Next-Gen Finance" />
-  <meta property="og:description" content="Liquid Labs builds on-chain infrastructure for next-generation finance. Creators of Swell and Hyperwave." />
+  <meta property="og:title" content="Liquid Labs" />
+  <meta property="og:description" content="On-chain infrastructure for next-generation finance." />
   <meta property="og:site_name" content="Liquid Labs" />
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Liquid Labs — On-Chain Infrastructure for Next-Gen Finance" />
-  <meta name="twitter:description" content="Liquid Labs builds on-chain infrastructure for next-generation finance. Creators of Swell and Hyperwave." />
-  <title>Liquid Labs — On-Chain Infrastructure for Next-Gen Finance</title>
+  <meta name="twitter:title" content="Liquid Labs" />
+  <meta name="twitter:description" content="On-chain infrastructure for next-generation finance." />
+  <title>Liquid Labs</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:     #ffffff;
-      --off-white: #f9fafb;
-      --ice:       #eef2ff;
-      --border:    #e5e7eb;
-      --text:      #0d1117;
-      --muted:     #4b5563;
-      --subtle:    #9ca3af;
-      --accent:    #2563eb;
-      --navy:      #0a1628;
+      --cream:   #F3F1EB;
+      --navy:    #1B2857;
+      --text:    #0D1117;
+      --muted:   #5C6070;
+      --border:  rgba(27,40,87,0.13);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
+      background: var(--cream);
       color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── NAV ── */
@@ -49,12 +42,12 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      height: 60px;
+      height: 58px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 0 7%;
-      background: rgba(255,255,255,0.94);
+      background: rgba(243,241,235,0.92);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
@@ -66,12 +59,7 @@
       text-decoration: none;
     }
 
-    .nav-logo-mark {
-      width: 28px;
-      height: 28px;
-    }
-
-    .nav-logo-text {
+    .nav-wordmark {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 0.95rem;
       font-weight: 700;
@@ -89,24 +77,23 @@
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 500;
-      letter-spacing: 0.01em;
       transition: color 0.2s;
     }
 
     .nav-links a:hover { color: var(--text); }
 
     .nav-cta {
-      color: var(--white) !important;
-      background: var(--text);
+      background: var(--navy) !important;
+      color: #fff !important;
       padding: 7px 18px;
       border-radius: 5px;
-      transition: background 0.2s !important;
       font-size: 0.82rem !important;
+      transition: opacity 0.2s !important;
     }
 
-    .nav-cta:hover { background: #1f2937 !important; }
+    .nav-cta:hover { opacity: 0.85 !important; }
 
     /* ── HERO ── */
     .hero {
@@ -117,38 +104,31 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 100px 7% 200px;
-      background: linear-gradient(175deg, var(--ice) 0%, var(--white) 55%);
+      padding: 100px 7% 180px;
       overflow: hidden;
     }
 
-    .hero-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
+    .hero-mark {
+      margin-bottom: 40px;
     }
 
     h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.6rem, 5.5vw, 5rem);
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
       font-weight: 700;
-      line-height: 1.05;
+      line-height: 1.06;
       letter-spacing: -0.04em;
       color: var(--text);
-      max-width: 820px;
-      margin-bottom: 22px;
+      max-width: 780px;
+      margin-bottom: 20px;
     }
 
     .hero-sub {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 460px;
-      line-height: 1.8;
-      margin-bottom: 44px;
-      font-weight: 400;
+      max-width: 440px;
+      line-height: 1.78;
+      margin-bottom: 40px;
     }
 
     .hero-actions {
@@ -159,22 +139,19 @@
     }
 
     .btn-primary {
-      background: var(--text);
-      color: var(--white);
+      background: var(--navy);
+      color: #fff;
       padding: 12px 26px;
       border-radius: 5px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.875rem;
-      transition: background 0.2s, transform 0.15s;
+      transition: opacity 0.2s, transform 0.15s;
     }
 
-    .btn-primary:hover {
-      background: #1f2937;
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
 
-    .btn-outline {
+    .btn-ghost {
       background: transparent;
       color: var(--text);
       padding: 12px 26px;
@@ -183,78 +160,44 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.875rem;
-      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      transition: border-color 0.2s, transform 0.15s;
     }
 
-    .btn-outline:hover {
-      border-color: #9ca3af;
-      background: var(--off-white);
-      transform: translateY(-1px);
-    }
+    .btn-ghost:hover { border-color: rgba(27,40,87,0.35); transform: translateY(-1px); }
 
-    /* ── HERO WAVE CANVAS ── */
+    /* ── CANVAS WAVE ── */
     #hero-wave {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 200px;
+      bottom: 0; left: 0;
+      width: 100%; height: 180px;
       pointer-events: none;
     }
 
-    /* ── STATS STRIP ── */
-    .stats {
-      display: flex;
-      justify-content: center;
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      z-index: 1;
-    }
-
-    .stat {
-      flex: 1;
-      max-width: 220px;
-      padding: 36px 24px;
-      text-align: center;
-      border-right: 1px solid var(--border);
-    }
-
-    .stat:last-child { border-right: none; }
-
-    .stat-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.04em;
-    }
-
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--subtle);
-      margin-top: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
     }
 
     /* ── SECTIONS ── */
-    section { position: relative; padding: 96px 7%; }
+    section {
+      padding: 88px 7%;
+    }
 
-    .section-label {
+    .section-eyebrow {
       font-size: 0.7rem;
       font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.14em;
+      color: var(--navy);
+      letter-spacing: 0.13em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .section-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
       font-weight: 700;
-      color: var(--text);
       letter-spacing: -0.035em;
       line-height: 1.12;
       margin-bottom: 14px;
@@ -264,84 +207,60 @@
       font-size: 0.975rem;
       color: var(--muted);
       line-height: 1.78;
-      max-width: 480px;
+      max-width: 460px;
     }
 
     /* ── PRODUCTS ── */
-    .products { background: var(--off-white); }
-
-    .products-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-
-    .products-header .section-sub { margin: 0 auto; }
-
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      max-width: 1080px;
-      margin: 0 auto;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 1040px;
+      margin: 56px auto 0;
+      background: var(--border);
     }
 
     .product-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 36px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      background: var(--cream);
+      padding: 40px;
     }
 
-    .product-card:hover {
-      border-color: #bfdbfe;
-      box-shadow: 0 6px 28px rgba(37,99,235,0.07);
-      transform: translateY(-2px);
+    .product-mark {
+      margin-bottom: 24px;
     }
-
-    .product-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 22px;
-    }
-
-    .swell-icon { background: #dbeafe; }
-    .hyper-icon { background: #e0f2fe; }
 
     .product-name {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--text);
       margin-bottom: 10px;
     }
 
     .product-desc {
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.72;
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
     .token-list {
       display: flex;
       flex-direction: column;
-      gap: 9px;
-      margin-bottom: 28px;
+      gap: 8px;
+      margin-bottom: 32px;
     }
 
-    .token-item {
+    .token-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: var(--off-white);
       border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 10px 14px;
+      border-radius: 6px;
+      padding: 9px 14px;
     }
 
     .token-name {
@@ -351,210 +270,120 @@
       color: var(--text);
     }
 
-    .token-tag {
+    .token-label {
       font-size: 0.7rem;
-      padding: 3px 9px;
-      border-radius: 100px;
+      color: var(--muted);
       font-weight: 500;
       letter-spacing: 0.02em;
     }
-
-    .tag-blue { background: #dbeafe; color: #1d4ed8; }
-    .tag-sky  { background: #e0f2fe; color: #0284c7; }
-    .tag-teal { background: #ccfbf1; color: #0d9488; }
 
     .product-link {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      color: var(--accent);
+      gap: 6px;
+      color: var(--navy);
       text-decoration: none;
       font-size: 0.84rem;
       font-weight: 600;
-      transition: gap 0.2s;
+      border-bottom: 1px solid var(--navy);
+      padding-bottom: 1px;
+      transition: opacity 0.2s;
     }
 
-    .product-link:hover { gap: 9px; }
+    .product-link:hover { opacity: 0.65; }
 
-    /* ── INFRASTRUCTURE (NAVY) ── */
-    .infra {
-      background: var(--navy);
-      padding: 0 7%;
-      overflow: hidden;
-    }
-
-    .wave-enter {
-      line-height: 0;
-      background: var(--off-white);
-    }
-
-    .wave-enter svg,
-    .wave-exit svg { display: block; width: 100%; }
-
-    .wave-exit {
-      line-height: 0;
-      background: var(--white);
-    }
-
-    .infra-inner {
-      max-width: 1080px;
+    /* ── TEAM ── */
+    .team-inner {
+      max-width: 1040px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-      padding: 72px 0;
+      gap: 80px;
+      align-items: start;
     }
 
-    .infra .section-label { color: #60a5fa; }
-    .infra .section-title { color: #f9fafb; }
-    .infra .section-sub   { color: #6b7280; }
-
-    .infra-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
+    .founder-block {
+      margin-top: 40px;
     }
 
-    .infra-pill {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.10);
-      color: #d1d5db;
-      border-radius: 5px;
-      padding: 6px 14px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .infra-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .infra-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 9px;
-      padding: 22px;
-      transition: background 0.2s;
-    }
-
-    .infra-card:hover { background: rgba(255,255,255,0.07); }
-
-    .infra-card svg {
-      width: 20px;
-      height: 20px;
-      stroke: #60a5fa;
-      stroke-width: 1.6;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      fill: none;
-    }
-
-    .infra-card-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: #e5e7eb;
-      margin: 10px 0 5px;
-    }
-
-    .infra-card-desc {
-      font-size: 0.78rem;
-      color: #4b5563;
-      line-height: 1.55;
-    }
-
-    /* ── PODCAST ── */
-    .podcast { background: var(--white); }
-
-    .podcast-inner {
-      max-width: 840px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .podcast-card {
-      margin-top: 44px;
-      background: var(--off-white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 36px;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      text-align: left;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .podcast-card:hover {
-      border-color: #bfdbfe;
-      box-shadow: 0 4px 18px rgba(37,99,235,0.06);
-    }
-
-    .podcast-art {
-      width: 66px;
-      height: 66px;
-      border-radius: 9px;
-      background: var(--navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .podcast-art svg {
-      width: 26px;
-      height: 26px;
-      stroke: #60a5fa;
-      stroke-width: 1.7;
-      stroke-linecap: round;
-      fill: none;
-    }
-
-    .podcast-title {
+    .founder-name {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 7px;
+      margin-bottom: 3px;
     }
 
-    .podcast-desc {
+    .founder-role {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .founder-bio {
       font-size: 0.875rem;
       color: var(--muted);
-      line-height: 1.68;
+      line-height: 1.7;
     }
 
-    /* ── CTA ── */
-    .cta {
-      background: var(--off-white);
+    .team-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--border);
+      margin-top: 56px;
+    }
+
+    .team-stat {
+      background: var(--cream);
+      padding: 28px 24px;
+    }
+
+    .team-stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      margin-bottom: 3px;
+    }
+
+    .team-stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
       border-top: 1px solid var(--border);
       text-align: center;
     }
 
-    .cta-inner { max-width: 580px; margin: 0 auto; }
+    .contact-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
 
-    .cta h2 {
+    .contact h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
       font-weight: 700;
-      color: var(--text);
       letter-spacing: -0.035em;
       margin-bottom: 14px;
     }
 
-    .cta p {
-      color: var(--muted);
+    .contact p {
       font-size: 0.975rem;
+      color: var(--muted);
       line-height: 1.78;
       margin-bottom: 36px;
     }
 
-    .cta-buttons {
+    .contact-btns {
       display: flex;
       gap: 10px;
       justify-content: center;
@@ -563,48 +392,53 @@
 
     /* ── FOOTER ── */
     footer {
-      background: var(--white);
       border-top: 1px solid var(--border);
-      padding: 28px 7%;
+      padding: 24px 7%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .footer-brand {
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+    }
+
+    .footer-wordmark {
       font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      color: var(--subtle);
       font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
     }
 
     .footer-links {
       display: flex;
-      gap: 22px;
+      gap: 20px;
       list-style: none;
     }
 
     .footer-links a {
-      color: var(--subtle);
+      color: var(--muted);
       text-decoration: none;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       transition: color 0.2s;
     }
 
     .footer-links a:hover { color: var(--text); }
 
-    .footer-copy { color: var(--subtle); font-size: 0.78rem; }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .stats { flex-wrap: wrap; }
-      .stat { border-right: none; border-bottom: 1px solid var(--border); max-width: 50%; width: 50%; }
-      .infra-inner { grid-template-columns: 1fr; gap: 40px; padding: 56px 0; }
-      .infra-grid { grid-template-columns: 1fr; }
-      .podcast-card { flex-direction: column; text-align: center; }
+      .team-inner { grid-template-columns: 1fr; gap: 48px; }
       footer { flex-direction: column; align-items: flex-start; }
     }
   </style>
@@ -614,269 +448,245 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="28" height="28" rx="6" fill="#0a1628"/>
-        <path d="M6 19 C6 19 10 11 14 15 C18 19 22 11 22 11" stroke="#60a5fa" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Drop mark (small) -->
+      <svg width="22" height="27" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="c0"><path d="M50 4 C50 4 88 52 88 78 A38 38 0 0 1 12 78 C12 52 50 4 50 4Z"/></clipPath></defs>
+        <g clip-path="url(#c0)">
+          <rect width="100" height="120" fill="#F3F1EB"/>
+          <rect x="0" y="4"   width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="22"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="40"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="58"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="76"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="94"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="112" width="100" height="10" fill="#1B2857"/>
+        </g>
       </svg>
-      <span class="nav-logo-text">Liquid Labs</span>
+      <span class="nav-wordmark">Liquid Labs</span>
     </a>
     <ul class="nav-links">
       <li><a href="#products">Products</a></li>
-      <li><a href="#infrastructure">Infrastructure</a></li>
-      <li><a href="#podcast">Podcast</a></li>
-      <li><a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="nav-cta">Connect</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="nav-cta">LinkedIn</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="hero-label">On-Chain Infrastructure</p>
-    <h1>Building the Financial<br/>Primitives of Tomorrow</h1>
-    <p class="hero-sub">
-      Liquid Labs designs and operates production-grade protocols that unlock yield and liquidity across Ethereum and beyond.
-    </p>
-    <div class="hero-actions">
-      <a href="#products" class="btn-primary">Explore Products</a>
-      <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="btn-outline">Follow on LinkedIn</a>
+    <!-- Drop mark (large) -->
+    <div class="hero-mark">
+      <svg width="72" height="88" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="c1"><path d="M50 4 C50 4 88 52 88 78 A38 38 0 0 1 12 78 C12 52 50 4 50 4Z"/></clipPath></defs>
+        <g clip-path="url(#c1)">
+          <rect width="100" height="120" fill="#F3F1EB"/>
+          <rect x="0" y="4"   width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="22"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="40"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="58"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="76"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="94"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="112" width="100" height="10" fill="#1B2857"/>
+        </g>
+      </svg>
     </div>
+
+    <h1>On-Chain Infrastructure<br/>for Next-Gen Finance</h1>
+    <p class="hero-sub">Liquid Labs designs and operates production-grade DeFi protocols — turning idle assets into yield-bearing, liquid capital.</p>
+    <div class="hero-actions">
+      <a href="https://app.swellnetwork.io" target="_blank" rel="noopener" class="btn-primary">Open Swell</a>
+      <a href="https://app.hyperwavefi.xyz" target="_blank" rel="noopener" class="btn-ghost">Open Hyperwave</a>
+    </div>
+
     <canvas id="hero-wave"></canvas>
   </section>
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-value">2</div>
-      <div class="stat-label">Live Protocols</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">19</div>
-      <div class="stat-label">Team Members</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">ETH</div>
-      <div class="stat-label">Native Asset</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">2024</div>
-      <div class="stat-label">Founded</div>
-    </div>
-  </div>
+  <hr class="divider" />
 
   <!-- PRODUCTS -->
-  <section class="products" id="products">
-    <div class="products-header">
-      <p class="section-label">Protocols</p>
+  <section id="products">
+    <div style="text-align:center; margin-bottom: 0;">
+      <p class="section-eyebrow">Protocols</p>
       <h2 class="section-title">Two Protocols. One Vision.</h2>
-      <p class="section-sub">Purpose-built infrastructure turning idle assets into productive, yield-generating capital without sacrificing liquidity.</p>
+      <p class="section-sub" style="margin: 0 auto;">Purpose-built infrastructure that unlocks yield without sacrificing liquidity.</p>
     </div>
 
     <div class="products-grid">
 
       <!-- SWELL -->
       <div class="product-card">
-        <div class="product-icon swell-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 16 C5 10 9 6 12 12 C15 18 19 14 22 8"/>
+        <div class="product-mark">
+          <!-- Wave icon -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="#1B2857"/>
+            <path d="M6 22 C9 15 13 11 18 17 C23 23 27 19 30 13" stroke="#F3F1EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="product-name">Swell</div>
         <p class="product-desc">A liquid staking and restaking protocol enabling ETH holders to earn staking rewards while retaining full DeFi composability.</p>
         <div class="token-list">
-          <div class="token-item">
+          <div class="token-row">
             <span class="token-name">swETH</span>
-            <span class="token-tag tag-blue">Liquid Staked ETH</span>
+            <span class="token-label">Liquid Staked ETH</span>
           </div>
-          <div class="token-item">
+          <div class="token-row">
             <span class="token-name">rswETH</span>
-            <span class="token-tag tag-sky">Liquid Restaked ETH</span>
+            <span class="token-label">Liquid Restaked ETH</span>
           </div>
         </div>
-        <a href="#" class="product-link">Learn about Swell →</a>
+        <a href="https://app.swellnetwork.io" target="_blank" rel="noopener" class="product-link">app.swellnetwork.io →</a>
       </div>
 
       <!-- HYPERWAVE -->
       <div class="product-card">
-        <div class="product-icon hyper-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        <div class="product-mark">
+          <!-- Lightning icon -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="#1B2857"/>
+            <path d="M21 7L11 20h8l-4 9 14-15h-8l4-7z" stroke="#F3F1EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
         <div class="product-name">Hyperwave</div>
         <p class="product-desc">A sister protocol that tokenizes Hyperliquidity Provider vault positions and HYPE staking yield into accessible DeFi instruments.</p>
         <div class="token-list">
-          <div class="token-item">
+          <div class="token-row">
             <span class="token-name">hwHLP</span>
-            <span class="token-tag tag-sky">Tokenized HLP Vault</span>
+            <span class="token-label">Tokenized HLP Vault</span>
           </div>
-          <div class="token-item">
+          <div class="token-row">
             <span class="token-name">hwHYPE</span>
-            <span class="token-tag tag-teal">Yield-Bearing HYPE</span>
+            <span class="token-label">Yield-Bearing HYPE</span>
           </div>
         </div>
-        <a href="#" class="product-link">Learn about Hyperwave →</a>
+        <a href="https://app.hyperwavefi.xyz" target="_blank" rel="noopener" class="product-link">app.hyperwavefi.xyz →</a>
       </div>
 
     </div>
   </section>
 
-  <!-- WAVE ENTER (off-white → navy) -->
-  <div class="wave-enter">
-    <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,0 C240,64 480,64 720,32 C960,0 1200,32 1440,48 L1440,64 L0,64 Z" fill="#0a1628"/>
-    </svg>
-  </div>
+  <hr class="divider" />
 
-  <!-- INFRASTRUCTURE -->
-  <section class="infra" id="infrastructure">
-    <div class="infra-inner">
+  <!-- TEAM -->
+  <section id="team">
+    <div class="team-inner">
       <div>
-        <p class="section-label">What We Build</p>
-        <h2 class="section-title">Production-Grade<br/>On-Chain Systems</h2>
-        <p class="section-sub">Every protocol we ship is designed for reliability, security, and composability — built to be bedrock infrastructure for decentralized finance.</p>
-        <div class="infra-pills">
-          <span class="infra-pill">Liquid Staking</span>
-          <span class="infra-pill">Restaking</span>
-          <span class="infra-pill">Yield Primitives</span>
-          <span class="infra-pill">Smart Contracts</span>
-          <span class="infra-pill">Market Making</span>
-          <span class="infra-pill">DeFi Composability</span>
+        <p class="section-eyebrow">The Team</p>
+        <h2 class="section-title">Built by engineers,<br/>for builders.</h2>
+        <p class="section-sub">A focused team of engineers and researchers in Sydney, Australia — shipping infrastructure that the next generation of finance will run on.</p>
+
+        <div class="founder-block">
+          <div class="founder-name">Daniel Dizon</div>
+          <div class="founder-role">Founder & CEO</div>
+          <p class="founder-bio">Daniel founded Swell Labs in Sydney to build production-grade liquid staking infrastructure on Ethereum. He has led the protocol from inception to a $1.5B+ ecosystem.</p>
         </div>
       </div>
 
-      <div class="infra-grid">
-        <div class="infra-card">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <div class="infra-card-title">Security First</div>
-          <div class="infra-card-desc">Rigorous audits and battle-tested smart contract architecture.</div>
+      <div class="team-stat-grid">
+        <div class="team-stat">
+          <div class="team-stat-value">19</div>
+          <div class="team-stat-label">Team members</div>
         </div>
-        <div class="infra-card">
-          <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-          <div class="infra-card-title">Composable</div>
-          <div class="infra-card-desc">Liquid tokens that integrate with the broader DeFi ecosystem.</div>
+        <div class="team-stat">
+          <div class="team-stat-value">2</div>
+          <div class="team-stat-label">Live protocols</div>
         </div>
-        <div class="infra-card">
-          <svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-          <div class="infra-card-title">Capital Efficient</div>
-          <div class="infra-card-desc">Unlock yield without permanently locking up your assets.</div>
+        <div class="team-stat">
+          <div class="team-stat-value">ETH</div>
+          <div class="team-stat-label">Native asset</div>
         </div>
-        <div class="infra-card">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <div class="infra-card-title">Decentralized</div>
-          <div class="infra-card-desc">Governance-aligned protocols for a trustless future.</div>
+        <div class="team-stat">
+          <div class="team-stat-value">2024</div>
+          <div class="team-stat-label">Founded</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WAVE EXIT (navy → white) -->
-  <div class="wave-exit">
-    <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M0,64 C240,0 480,0 720,32 C960,64 1200,32 1440,16 L1440,0 L0,0 Z" fill="#0a1628"/>
-    </svg>
-  </div>
+  <hr class="divider" />
 
-  <!-- PODCAST -->
-  <section class="podcast" id="podcast">
-    <div class="podcast-inner">
-      <p class="section-label">Thought Leadership</p>
-      <h2 class="section-title">The Restaked Podcast</h2>
-      <p class="section-sub" style="margin: 0 auto;">Deep dives into protocol design, restaking markets, and the future of on-chain finance — straight from the builders.</p>
-
-      <div class="podcast-card">
-        <div class="podcast-art">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-            <line x1="12" y1="19" x2="12" y2="23"/>
-            <line x1="8" y1="23" x2="16" y2="23"/>
-          </svg>
-        </div>
-        <div>
-          <div class="podcast-title">Restaked</div>
-          <p class="podcast-desc">Conversations about the cutting edge of restaking protocols, DeFi market dynamics, and the technical foundations of next-generation finance. By the team at Liquid Labs.</p>
-          <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="product-link" style="margin-top: 14px; display: inline-flex;">Follow for episodes →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-inner">
-      <h2>Building the Rails for<br/>Decentralized Finance</h2>
-      <p>A team of 19 engineers and researchers in Sydney, Australia, shipping production-grade on-chain infrastructure that scales with the next generation of finance.</p>
-      <div class="cta-buttons">
-        <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="btn-primary">Follow on LinkedIn</a>
-        <a href="mailto:hello@liquidlabs.io" class="btn-outline">Get in Touch</a>
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <p class="section-eyebrow">Get in touch</p>
+      <h2>Work with us.</h2>
+      <p>We're a small, focused team. If you're building in DeFi or want to learn more about our protocols, we'd love to hear from you.</p>
+      <div class="contact-btns">
+        <a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener" class="btn-primary">LinkedIn</a>
+        <a href="mailto:hello@liquidlabs.io" class="btn-ghost">hello@liquidlabs.io</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand">Liquid Labs</div>
+    <a href="#" class="footer-logo">
+      <svg width="18" height="22" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><clipPath id="c2"><path d="M50 4 C50 4 88 52 88 78 A38 38 0 0 1 12 78 C12 52 50 4 50 4Z"/></clipPath></defs>
+        <g clip-path="url(#c2)">
+          <rect width="100" height="120" fill="#F3F1EB"/>
+          <rect x="0" y="4"   width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="22"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="40"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="58"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="76"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="94"  width="100" height="10" fill="#1B2857"/>
+          <rect x="0" y="112" width="100" height="10" fill="#1B2857"/>
+        </g>
+      </svg>
+      <span class="footer-wordmark">Liquid Labs</span>
+    </a>
     <ul class="footer-links">
       <li><a href="#products">Products</a></li>
-      <li><a href="#infrastructure">Infrastructure</a></li>
-      <li><a href="#podcast">Podcast</a></li>
+      <li><a href="#team">Team</a></li>
       <li><a href="https://www.linkedin.com/company/liquidlabsio" target="_blank" rel="noopener">LinkedIn</a></li>
     </ul>
-    <div class="footer-copy">© 2026 Liquid Labs · Sydney, Australia</div>
+    <span class="footer-copy">© 2026 Liquid Labs · Sydney, Australia</span>
   </footer>
 
   <script>
-    // ── PHYSICAL WAVE SIMULATION ──
-    // Multi-layer superposition of sine waves with different frequencies,
-    // amplitudes and phase velocities — mimics real water surface dynamics.
-
+    // Physical wave simulation — multi-layer sine superposition
+    // in the brand palette (navy on cream).
     const canvas = document.getElementById('hero-wave');
-    const ctx    = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d');
     let W, H;
 
     function resize() {
       W = canvas.width  = canvas.offsetWidth;
       H = canvas.height = canvas.offsetHeight;
     }
-
     window.addEventListener('resize', resize);
     resize();
 
-    // Each layer: phase velocity (rad/s), spatial frequency (rad/px),
-    // amplitude (px), initial phase offset, and fill color.
+    // Layers vary in spatial freq, phase velocity, amplitude, and opacity.
+    // Using navy at low opacity so waves read on the cream background.
     const layers = [
-      { vel: 0.38,  freq: 0.007,  amp: 32, phase: 0.0, color: 'rgba(37,99,235,0.06)'  },
-      { vel: 0.22,  freq: 0.011,  amp: 22, phase: 1.8, color: 'rgba(37,99,235,0.055)' },
-      { vel: 0.54,  freq: 0.0155, amp: 16, phase: 3.4, color: 'rgba(14,116,144,0.05)' },
-      { vel: 0.14,  freq: 0.0055, amp: 28, phase: 0.9, color: 'rgba(10,22,40,0.038)'  },
-      { vel: 0.68,  freq: 0.022,  amp: 10, phase: 5.1, color: 'rgba(37,99,235,0.03)'  },
+      { vel: 0.30, freq: 0.0065, amp: 34, phase: 0.0, alpha: 0.07 },
+      { vel: 0.18, freq: 0.0100, amp: 22, phase: 1.9, alpha: 0.06 },
+      { vel: 0.48, freq: 0.0145, amp: 16, phase: 3.5, alpha: 0.05 },
+      { vel: 0.12, freq: 0.0050, amp: 28, phase: 0.7, alpha: 0.04 },
+      { vel: 0.60, freq: 0.0200, amp: 10, phase: 5.0, alpha: 0.03 },
     ];
 
-    // Baseline sits at ~56% down the canvas
-    const BASE = 0.56;
     let t = 0;
+    const BASE = 0.52; // baseline at 52% of canvas height
 
     function tick() {
       ctx.clearRect(0, 0, W, H);
-      t += 0.007;
+      t += 0.006;
 
       layers.forEach(l => {
         ctx.beginPath();
         ctx.moveTo(0, H);
-
         for (let x = 0; x <= W; x += 2) {
-          // Primary wave
-          let y = H * BASE
-                + Math.sin(x * l.freq         + t * l.vel + l.phase)            * l.amp
-                // Second harmonic — adds realistic asymmetry
-                + Math.sin(x * l.freq * 1.93  + t * l.vel * 1.27 + l.phase + 1.2) * (l.amp * 0.38)
-                // Low-frequency swell
-                + Math.sin(x * l.freq * 0.41  + t * l.vel * 0.61 + l.phase + 2.7) * (l.amp * 0.52);
+          const y = H * BASE
+            + Math.sin(x * l.freq          + t * l.vel + l.phase)           * l.amp
+            + Math.sin(x * l.freq * 1.91   + t * l.vel * 1.3  + l.phase + 1.1) * (l.amp * 0.36)
+            + Math.sin(x * l.freq * 0.43   + t * l.vel * 0.58 + l.phase + 2.6) * (l.amp * 0.50);
           ctx.lineTo(x, y);
         }
-
         ctx.lineTo(W, H);
         ctx.closePath();
-        ctx.fillStyle = l.color;
+        ctx.fillStyle = `rgba(27,40,87,${l.alpha})`;
         ctx.fill();
       });
 
