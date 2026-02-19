@@ -192,11 +192,17 @@
     }
 
     .hero-sub {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--muted);
-      max-width: 440px;
-      line-height: 1.78;
+      max-width: 560px;
+      line-height: 1.75;
       margin-bottom: 40px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub strong {
+      color: var(--text);
+      font-weight: 500;
     }
 
     .hero-actions {
@@ -634,11 +640,7 @@
     </div>
 
     <h1>On-Chain Infrastructure<br/>for Next-Gen Finance</h1>
-    <p class="hero-sub">Liquid Labs designs and operates production-grade DeFi protocols —<br/>turning idle assets into yield-bearing, liquid capital.</p>
-    <div class="hero-actions">
-      <a href="https://app.swellnetwork.io" target="_blank" rel="noopener" class="btn-primary">Open Swell</a>
-      <a href="https://app.hyperwavefi.xyz" target="_blank" rel="noopener" class="btn-ghost">Open Hyperwave</a>
-    </div>
+    <p class="hero-sub"><strong>Liquid Labs</strong> designs and operates production-grade DeFi protocols — turning idle assets into yield-bearing, liquid capital.</p>
 
     <canvas id="hero-wave"></canvas>
   </section>
@@ -670,16 +672,6 @@
         </div>
         <div class="product-name">Swell</div>
         <p class="product-desc">A liquid staking and restaking protocol enabling ETH holders to earn staking rewards while retaining full DeFi composability.</p>
-        <div class="token-list">
-          <div class="token-row">
-            <span class="token-name">swETH</span>
-            <span class="token-label">Liquid Staked ETH</span>
-          </div>
-          <div class="token-row">
-            <span class="token-name">rswETH</span>
-            <span class="token-label">Liquid Restaked ETH</span>
-          </div>
-        </div>
         <a href="https://app.swellnetwork.io" target="_blank" rel="noopener" class="product-link">app.swellnetwork.io →</a>
       </div>
 
@@ -702,31 +694,13 @@
         </div>
         <div class="product-name">Hyperwave</div>
         <p class="product-desc">A sister protocol that tokenizes Hyperliquidity Provider vault positions and HYPE staking yield into accessible DeFi instruments.</p>
-        <div class="token-list">
-          <div class="token-row">
-            <span class="token-name">hwHLP</span>
-            <span class="token-label">Tokenized HLP Vault</span>
-          </div>
-          <div class="token-row">
-            <span class="token-name">hwHYPE</span>
-            <span class="token-label">Yield-Bearing HYPE</span>
-          </div>
-        </div>
         <a href="https://app.hyperwavefi.xyz" target="_blank" rel="noopener" class="product-link">app.hyperwavefi.xyz →</a>
       </div>
 
       <!-- VOYAGER -->
       <div class="product-card reveal reveal-delay-3">
         <div class="product-mark">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="16" stroke="#1B2857" stroke-width="2" fill="none"/>
-            <circle cx="20" cy="20" r="3.5" fill="#1B2857"/>
-            <line x1="20" y1="4" x2="20" y2="10" stroke="#1B2857" stroke-width="2" stroke-linecap="round"/>
-            <line x1="20" y1="30" x2="20" y2="36" stroke="#1B2857" stroke-width="2" stroke-linecap="round"/>
-            <line x1="4" y1="20" x2="10" y2="20" stroke="#1B2857" stroke-width="2" stroke-linecap="round"/>
-            <line x1="30" y1="20" x2="36" y2="20" stroke="#1B2857" stroke-width="2" stroke-linecap="round"/>
-            <path d="M14 14 L20 20 L28 12" stroke="#1B2857" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+          <img src="/voyager-logo.png" alt="Voyager" width="40" height="40" style="border-radius:8px; display:block;" />
         </div>
         <div class="product-name">Voyager</div>
         <p class="product-desc">A smart trading platform built to help DeFi participants trade with greater precision — never be sidelined by the market.</p>
