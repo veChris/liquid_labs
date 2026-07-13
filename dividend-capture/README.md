@@ -60,7 +60,26 @@ Useful flags:
 - `out/report.html` — executive summary + per-event cards with inline-SVG
   charts (perp mark around the ex-date, the "full-dividend" reference line, the
   overnight path, cumulative funding) and a P&L table per strategy.
-- `out/events.csv` — one row per event with every measured field.
+- `out/events.csv` — one row per event with every measured field, including the
+  corrected per-share delta-neutral P&L (see below).
+
+### Corrected delta-neutral P&L (per share)
+
+The report and CSV carry an explicit per-share P&L for "long stock + short perp,
+hold across the ex-date":
+
+```
+P&L/share = (stock_after − stock_before)   ← long-stock leg: gains when stock rises
+          + (perp_before  − perp_after)    ← short-perp leg: gains when perp falls
+          + dividend (net of WHT)           ← the payout you collect
+```
+
+Note the **entry-side signs**: you *pay* for the stock (`− stock_before`) and
+*receive* proceeds when shorting the perp (`+ perp_before`). A P&L is always
+*exit − entry*, never a sum of the two basis snapshots — summing them
+double-counts the entry basis (`+ 2·(stock_before − perp_before)`) and is not a
+tradeable result. `pnl_notional_net` scales the per-share figure to `--notional`
+of stock bought at entry.
 
 ## How each event is measured
 

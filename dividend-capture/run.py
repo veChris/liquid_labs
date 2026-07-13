@@ -88,7 +88,9 @@ def main(argv):
 
 
 def write_csv(all_results, path):
-    cols = ["ticker", "ex_date", "cum_date", "dividend", "price_entry", "price_exit",
+    cols = ["ticker", "ex_date", "cum_date", "dividend",
+            "stock_before", "stock_after", "perp_before", "perp_after",
+            "pnl_share_net", "pnl_notional_net",
             "stock_drop", "stock_drop_ratio", "perp_drop", "perp_drop_ratio",
             "basis_gap", "overnight_dev_x_div", "funding_sum_pct",
             "A_plain", "B_delta_neutral", "C_perp_short"]
@@ -99,9 +101,14 @@ def write_csv(all_results, path):
             for r in rs:
                 p = r["perp"]
                 s = r["strategies"]
+                ps = r["pnl_share"]
+                qty = r["notional"] / r["price_entry"]
                 w.writerow([
                     r["ticker"], r["ex_date"], r["cum_date"], f'{r["dividend"]:.4f}',
                     f'{r["price_entry"]:.2f}', f'{r["price_exit"]:.2f}',
+                    f'{p["entry"]:.2f}' if p else "", f'{p["exit"]:.2f}' if p else "",
+                    f'{ps["net"]:.4f}' if ps else "",
+                    f'{ps["net"]*qty:.1f}' if ps else "",
                     f'{r["stock_drop"]:.4f}', f'{r["stock_drop_ratio"]:.3f}',
                     f'{p["drop"]:.4f}' if p else "", f'{p["drop_ratio"]:.3f}' if p else "",
                     f'{p["basis_gap"]:.4f}' if p else "",

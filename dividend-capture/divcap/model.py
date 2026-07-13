@@ -188,11 +188,26 @@ def analyze_event(ticker, ev, bars, candles, funding, cfg):
             "fees": -b_perp_fees, "total": c_total,
         }
 
+    # ---- corrected per-share delta-neutral P&L ----
+    # P&L/share = (stock exit - stock entry) + (perp entry - perp exit) + dividend
+    #   long-stock leg gains when the stock rises;
+    #   short-perp leg gains when the perp falls;
+    #   plus the dividend you collect (gross, and net of WHT).
+    ps = None
+    if perp:
+        stock_leg = P_exit_stock - P_entry
+        perp_leg = perp["entry"] - perp["exit"]
+        ps = {
+            "stock_leg": stock_leg, "perp_leg": perp_leg,
+            "gross": stock_leg + perp_leg + div,
+            "net": stock_leg + perp_leg + net_div,   # dividend net of WHT
+        }
+
     return {
         "ticker": ticker, "ex_date": ex_date, "cum_date": cum_date,
         "dividend": div, "net_dividend": net_div,
         "price_entry": P_entry, "price_exit": P_exit_stock,
         "stock_drop": stock_drop, "stock_drop_ratio": stock_drop_ratio,
-        "perp": perp, "strategies": strat,
+        "perp": perp, "strategies": strat, "pnl_share": ps,
         "notional": N, "qty": qty,
     }

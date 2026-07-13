@@ -178,6 +178,41 @@ def _pnl_table(r):
             f'<th>P&amp;L</th><th>breakdown</th></tr></thead><tbody>{body}</tbody></table>')
 
 
+def price_table(all_results, cfg):
+    """Compact table: prices before/after ex + the corrected per-share P&L
+    (long stock + short perp + dividend) and that P&L scaled to notional."""
+    N = cfg["notional"]
+    rows = []
+    for rs in all_results.values():
+        for r in rs:
+            p = r["perp"]; ps = r["pnl_share"]
+            if not p or not ps:
+                continue
+            qty = N / r["price_entry"]
+            rows.append(
+                f'<tr><td>{r["ticker"]} {r["ex_date"]}</td>'
+                f'<td class="num">${r["dividend"]:.2f}</td>'
+                f'<td class="num">{r["price_entry"]:.2f}</td>'
+                f'<td class="num">{r["price_exit"]:.2f}</td>'
+                f'<td class="num">{p["entry"]:.2f}</td>'
+                f'<td class="num">{p["exit"]:.2f}</td>'
+                f'<td class="num {_cls(ps["net"])}">{ps["net"]:+.2f}</td>'
+                f'<td class="num {_cls(ps["net"]*qty)}">{_money(ps["net"]*qty)}</td></tr>')
+    if not rows:
+        return ""
+    return f"""
+    <h2>Prices &amp; corrected delta-neutral P&amp;L</h2>
+    <p class="muted small">P&amp;L/share = (stock after − stock before) + (perp before − perp after)
+      + net dividend. Long-stock leg gains when the stock rises; short-perp leg gains when the
+      perp falls. The last column scales that to {_money(N)} of stock at entry.</p>
+    <table class="pnl"><thead><tr>
+      <th>Ticker / ex-date</th><th>Div</th>
+      <th>Stock before</th><th>Stock after</th>
+      <th>Perp before</th><th>Perp after</th>
+      <th>P&amp;L / share</th><th>P&amp;L / {_money(N)}</th>
+    </tr></thead><tbody>{''.join(rows)}</tbody></table>"""
+
+
 def build_report(all_results, cfg, out_path):
     covered = [r for rs in all_results.values() for r in rs if r["perp"]]
     all_ev = [r for rs in all_results.values() for r in rs]
@@ -243,6 +278,7 @@ def build_report(all_results, cfg, out_path):
 equity perps and their underlyings. Buy the day before ex, sell on the ex-date.</p>
 <div class="config">{cfg_line}</div>
 {summary}
+{price_table(all_results, cfg)}
 <h2>Per-event detail</h2>
 {''.join(cards)}
 <footer>
