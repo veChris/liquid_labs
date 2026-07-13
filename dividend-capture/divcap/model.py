@@ -106,6 +106,58 @@ def prev_trading_day(bars, ex_date):
     return prior[-1] if prior else None
 
 
+def _day_snaps(bars, candles, day):
+    """NYSE open+close snapshots for a day: (label, stock, perp, ms, basis)."""
+    out = []
+    for which in ("open", "close"):
+        ms = et_session_utc(day, which)
+        pp = perp_price_at(candles, ms)
+        if pp is None:
+            continue
+        sp = bars[day]["open"] if which == "open" else bars[day]["close"]
+        out.append((f"{day} {which}", sp, pp, ms, sp - pp))
+    return out
+
+
+def best_basis_trade(ticker, ev, bars, candles, funding, cfg, win=5):
+    """Delta-neutral trade entered/exited at the lowest-|basis| snapshot in a
+    window around the ex-date (perp ~ stock at both ends). Simulates limit-order
+    "basis discipline". OPTIMISTIC: min-|basis| is chosen with hindsight over
+    daily open/close snapshots, so it's an upper bound on what basis discipline
+    achieves in live execution. Entry must be <= cum-day (to earn the dividend);
+    exit on/after the ex-date."""
+    ex = ev["ex_date"]
+    div = ev["amount"]
+    net_div = div * (1 - cfg["wht"])
+    days = sorted(bars)
+    idx = days.index(ex) if ex in days else next((i for i, d in enumerate(days) if d >= ex), None)
+    if idx is None or idx == 0:
+        return None
+    cum_i = idx - 1
+    entry_days = days[max(0, cum_i - win):cum_i + 1]
+    exit_days = days[idx:idx + win + 1]
+    ent = [s for d in entry_days for s in _day_snaps(bars, candles, d)]
+    ext = [s for d in exit_days for s in _day_snaps(bars, candles, d)]
+    if not ent or not ext:
+        return None
+    e = min(ent, key=lambda s: abs(s[4]))
+    x = min(ext, key=lambda s: abs(s[4]))
+    N = cfg["notional"]
+    qs = N / e[1]
+    perp_fee = (cfg["perp_maker_bps"] if cfg["fills"] == "maker" else cfg["perp_taker_bps"]) / 1e4
+    stock_fee = cfg["stock_fee_bps"] / 1e4
+    price = qs * ((x[1] - e[1]) + (e[2] - x[2]))     # = qs*(basis_x - basis_e)
+    fsum, _ = funding_over(funding, e[3], x[3])
+    funding_pnl = fsum * N
+    fees = -(2 * perp_fee + 2 * stock_fee) * N
+    total = price + qs * net_div + funding_pnl + fees
+    return {
+        "entry": e[0], "exit": x[0], "basis_entry": e[4], "basis_exit": x[4],
+        "price": price, "dividend": qs * net_div, "funding": funding_pnl,
+        "fees": fees, "total": total,
+    }
+
+
 def analyze_event(ticker, ev, bars, candles, funding, cfg):
     """Return a dict of measurements + P&L for one ex-dividend event, or None
     if we lack the stock bars around it."""
@@ -210,11 +262,14 @@ def analyze_event(ticker, ev, bars, candles, funding, cfg):
             "full_net": net + funding_ps + fees_ps,   # everything included
         }
 
+    basis_trade = best_basis_trade(ticker, ev, bars, candles, funding, cfg) if perp else None
+
     return {
         "ticker": ticker, "ex_date": ex_date, "cum_date": cum_date,
         "dividend": div, "net_dividend": net_div,
         "price_entry": P_entry, "price_exit": P_exit_stock,
         "stock_drop": stock_drop, "stock_drop_ratio": stock_drop_ratio,
         "perp": perp, "strategies": strat, "pnl_share": ps,
+        "basis_trade": basis_trade,
         "notional": N, "qty": qty,
     }

@@ -92,6 +92,7 @@ def write_csv(all_results, path):
             "stock_before", "stock_after", "perp_before", "perp_after",
             "pnl_share_priceDiv", "funding_share", "fees_share",
             "pnl_share_full", "pnl_notional_full",
+            "basis_disc_total", "basis_disc_in", "basis_disc_out",
             "stock_drop", "stock_drop_ratio", "perp_drop", "perp_drop_ratio",
             "basis_gap", "overnight_dev_x_div", "funding_sum_pct",
             "A_plain", "B_delta_neutral", "C_perp_short"]
@@ -113,6 +114,9 @@ def write_csv(all_results, path):
                     f'{ps["fees"]:.4f}' if ps else "",
                     f'{ps["full_net"]:.4f}' if ps else "",
                     f'{ps["full_net"]*qty:.1f}' if ps else "",
+                    f'{r["basis_trade"]["total"]:.1f}' if r.get("basis_trade") else "",
+                    f'{r["basis_trade"]["basis_entry"]:.3f}' if r.get("basis_trade") else "",
+                    f'{r["basis_trade"]["basis_exit"]:.3f}' if r.get("basis_trade") else "",
                     f'{r["stock_drop"]:.4f}', f'{r["stock_drop_ratio"]:.3f}',
                     f'{p["drop"]:.4f}' if p else "", f'{p["drop_ratio"]:.3f}' if p else "",
                     f'{p["basis_gap"]:.4f}' if p else "",

@@ -4,9 +4,13 @@
 (Interactive Brokers) + Perp short (Hyperliquid) über den Ex-Tag halten, um die
 Dividende zu behalten, während sich der Kurs-Move der beiden Legs aufhebt?
 
-**Antwort: Nein.** Nicht bei den auf Hyperliquid handelbaren Titeln. Der Edge
-(die Dividende) ist ~7× kleiner als das Rauschen, das ihn überlagert. Unten die
-Begründung, komplett aus echten Daten.
+**Antwort: Als naiver Zeit-Trade nein — als basis-disziplinierte Limit-Order-
+Strategie vielleicht.** Bei fester Ein-/Ausstiegszeit ist der Edge (die Dividende)
+~7× kleiner als das Rauschen (Basisrisiko), das ihn überlagert → Glücksspiel.
+Geht man aber nur rein/raus, wenn Perp ≈ Aktie (Basis ~0), bricht die Streuung um
+das 4-Fache ein und alle Events werden positiv (siehe §5b) — allerdings nur als
+optimistische Obergrenze, deren Umsetzbarkeit an der Fill-Qualität hängt. Unten
+die Begründung, komplett aus echten Daten.
 
 ---
 
@@ -111,6 +115,43 @@ Auf dem aktuellen `xyz`-Dex ist Bedingung 1 für keinen der Big-Tech-Namen
 erfüllt.
 
 ---
+
+## 5b. Revision: Mit Basis-Disziplin wird es handelbar (Obergrenze)
+
+Der naive Ansatz (fixe Uhrzeit, Cum-Close → Ex-Open) ist eine **Wette auf die
+Basis**. Ändert man nur *eine* Sache — man geriert nur rein und raus, **wenn Perp
+≈ Aktie** (Basis ~0, per Limit-Order) — passiert Folgendes über die 9 abgedeckten
+Events:
+
+| | Naiv (Ex-Open) | Basis-diszipliniert |
+|---|---|---|
+| Ø Ergebnis / $100k | +$219 | +$246 |
+| **StdAbw (Streuung)** | **$683** | **$158** |
+| **Trefferquote** | **5 / 9** | **9 / 9** |
+
+Der Erwartungswert bleibt fast gleich — aber die **Streuung bricht um das
+4-Fache ein** und **jedes** Event wird positiv. Der Grund folgt direkt aus der
+P&L-Formel `P&L = (Basis_aus − Basis_ein) + Netto-Div − Funding − Fees`: legt man
+beide Basiswerte auf ~0, verschwindet der Zufallsterm und übrig bleibt die saubere
+Dividende minus Kosten.
+
+**Aber — der entscheidende Vorbehalt:** Diese Spalte ist eine **optimistische
+Obergrenze**. Das Modell wählt den Snapshot mit minimaler |Basis| *im Nachhinein*
+aus Tages-Open/-Close-Punkten. In der Praxis:
+
+- Du kannst einen Basis-≈0-Fill **nicht garantieren** — die Limit-Order füllt
+  vielleicht nicht im nötigen Zeitfenster.
+- Musst du am Ex-Tag zwingend raus und die Basis steht gerade −0,7 (wie beim
+  ersten STRC-Open), zahlst du drauf.
+- Reale Slippage frisst einen Teil des Edges.
+
+**Die korrekte Schlussfolgerung ist also nuancierter als „lohnt sich nicht":**
+Als **fixe Zeit-Trade** (naiv) ist die Strategie ein Glücksspiel und lohnt nicht.
+Als **basis-disziplinierte Limit-Order-Strategie** *kann* sie ein echter, wenn
+auch dünner Dividenden-Harvester sein (Ø +0,25 %/Event, geringe Streuung) — die
+Umsetzbarkeit hängt komplett davon ab, ob du verlässlich Basis-≈0-Fills an beiden
+Enden bekommst. Das ist die eigentliche offene Frage für die Praxis, nicht die
+Dividende selbst.
 
 ## 6. Fazit
 

@@ -14,6 +14,7 @@
   table.pnl th,table.pnl td{border-bottom:1px solid #eef2f7;padding:6px 8px;text-align:left;vertical-align:top}
   td.num{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
   .pos{color:#16a34a} .neg{color:#dc2626}
+  tr.foot td{border-top:2px solid #cbd5e1;font-weight:600}
   footer{margin-top:40px;font-size:12px;color:#94a3b8}
 </style></head><body>
 <h1>Ex-Dividend &amp; Dividend-Capture Model</h1>
@@ -37,6 +38,17 @@ equity perps and their underlyings. Buy the day before ex, sell on the ex-date.<
             worth it with maker fills, a short hold, and many repetitions — exactly as suspected.</li>
       </ul>
     </div>
+
+    <h2>Basis discipline vs. naive exit</h2>
+    <p class="muted small"><b>Naive</b> = enter cum-close, exit ex-open (market fills).
+      <b>Basis-disciplined</b> = enter/exit at the lowest-|basis| snapshot in a ±5-day
+      window (perp ≈ stock at both ends), simulating limit orders. The disciplined column
+      is an <b>optimistic upper bound</b> — min-|basis| is picked with hindsight over daily
+      open/close snapshots. Note how the variance collapses and every event turns positive.</p>
+    <table class="pnl"><thead><tr>
+      <th>Ticker / ex-date</th><th>Naive B</th>
+      <th>Basis in&rarr;out</th><th>Basis-disciplined</th><th>&Delta;</th>
+    </tr></thead><tbody><tr><td>STRC 2026-06-30</td><td class="num neg">$-395</td><td class="num">-0.06 &rarr; -0.02</td><td class="num pos">$260</td><td class="num pos">$655</td></tr><tr><td>MSFT 2026-02-19</td><td class="num neg">$-7</td><td class="num">-0.06 &rarr; +0.03</td><td class="num pos">$376</td><td class="num pos">$384</td></tr><tr><td>MSFT 2026-05-21</td><td class="num pos">$1,356</td><td class="num">+0.14 &rarr; -0.53</td><td class="num pos">$17</td><td class="num neg">$-1,339</td></tr><tr><td>AAPL 2026-02-09</td><td class="num pos">$1,125</td><td class="num">-0.34 &rarr; +0.07</td><td class="num pos">$315</td><td class="num neg">$-810</td></tr><tr><td>AAPL 2026-05-11</td><td class="num pos">$6</td><td class="num">+0.01 &rarr; -0.00</td><td class="num pos">$127</td><td class="num pos">$121</td></tr><tr><td>NVDA 2026-03-11</td><td class="num neg">$-502</td><td class="num">-0.07 &rarr; +0.02</td><td class="num pos">$110</td><td class="num pos">$612</td></tr><tr><td>NVDA 2026-06-04</td><td class="num pos">$800</td><td class="num">-0.03 &rarr; -0.05</td><td class="num pos">$465</td><td class="num neg">$-334</td></tr><tr><td>GOOGL 2026-03-09</td><td class="num neg">$-648</td><td class="num">-0.05 &rarr; +0.30</td><td class="num pos">$89</td><td class="num pos">$736</td></tr><tr><td>GOOGL 2026-06-08</td><td class="num pos">$234</td><td class="num">-0.03 &rarr; -0.04</td><td class="num pos">$458</td><td class="num pos">$224</td></tr><tr class="foot"><td>Ø / StdAbw</td><td class="num">$219 <span class="muted">±$683</span></td><td></td><td class="num">$246 <span class="muted">±$158</span></td><td class="muted small">hit 5/9 &rarr; 9/9</td></tr></tbody></table>
 
     <h2>Prices &amp; full delta-neutral P&amp;L</h2>
     <p class="muted small">Everything per share of stock, hold across the ex-date.

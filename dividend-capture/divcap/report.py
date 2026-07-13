@@ -215,6 +215,51 @@ def price_table(all_results, cfg):
     </tr></thead><tbody>{''.join(rows)}</tbody></table>"""
 
 
+def basis_discipline_table(all_results, cfg):
+    """Naive ex-open delta-neutral vs. entering/exiting at min-|basis| snapshots."""
+    N = cfg["notional"]
+    rows, naive, disc = [], [], []
+    for rs in all_results.values():
+        for r in rs:
+            b = r.get("basis_trade")
+            nv = r["strategies"].get("B_delta_neutral", {}).get("total")
+            if not b or nv is None:
+                continue
+            naive.append(nv); disc.append(b["total"])
+            rows.append(
+                f'<tr><td>{r["ticker"]} {r["ex_date"]}</td>'
+                f'<td class="num {_cls(nv)}">{_money(nv)}</td>'
+                f'<td class="num">{b["basis_entry"]:+.2f} &rarr; {b["basis_exit"]:+.2f}</td>'
+                f'<td class="num {_cls(b["total"])}">{_money(b["total"])}</td>'
+                f'<td class="num {_cls(b["total"]-nv)}">{_money(b["total"]-nv)}</td></tr>')
+    if not rows:
+        return ""
+
+    def mean(v): return sum(v) / len(v) if v else 0.0
+    def std(v):
+        m = mean(v)
+        return (sum((x - m) ** 2 for x in v) / len(v)) ** 0.5 if v else 0.0
+    win_n = sum(1 for x in naive if x > 0)
+    win_d = sum(1 for x in disc if x > 0)
+    foot = (
+        f'<tr class="foot"><td>Ø / StdAbw</td>'
+        f'<td class="num">{_money(mean(naive))} <span class="muted">±{_money(std(naive))}</span></td>'
+        f'<td></td>'
+        f'<td class="num">{_money(mean(disc))} <span class="muted">±{_money(std(disc))}</span></td>'
+        f'<td class="muted small">hit {win_n}/{len(naive)} &rarr; {win_d}/{len(disc)}</td></tr>')
+    return f"""
+    <h2>Basis discipline vs. naive exit</h2>
+    <p class="muted small"><b>Naive</b> = enter cum-close, exit ex-open (market fills).
+      <b>Basis-disciplined</b> = enter/exit at the lowest-|basis| snapshot in a ±5-day
+      window (perp ≈ stock at both ends), simulating limit orders. The disciplined column
+      is an <b>optimistic upper bound</b> — min-|basis| is picked with hindsight over daily
+      open/close snapshots. Note how the variance collapses and every event turns positive.</p>
+    <table class="pnl"><thead><tr>
+      <th>Ticker / ex-date</th><th>Naive B</th>
+      <th>Basis in&rarr;out</th><th>Basis-disciplined</th><th>&Delta;</th>
+    </tr></thead><tbody>{''.join(rows)}{foot}</tbody></table>"""
+
+
 def build_report(all_results, cfg, out_path):
     covered = [r for rs in all_results.values() for r in rs if r["perp"]]
     all_ev = [r for rs in all_results.values() for r in rs]
@@ -273,6 +318,7 @@ def build_report(all_results, cfg, out_path):
   table.pnl th,table.pnl td{{border-bottom:1px solid #eef2f7;padding:6px 8px;text-align:left;vertical-align:top}}
   td.num{{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}}
   .pos{{color:#16a34a}} .neg{{color:#dc2626}}
+  tr.foot td{{border-top:2px solid #cbd5e1;font-weight:600}}
   footer{{margin-top:40px;font-size:12px;color:#94a3b8}}
 </style></head><body>
 <h1>Ex-Dividend &amp; Dividend-Capture Model</h1>
@@ -280,6 +326,7 @@ def build_report(all_results, cfg, out_path):
 equity perps and their underlyings. Buy the day before ex, sell on the ex-date.</p>
 <div class="config">{cfg_line}</div>
 {summary}
+{basis_discipline_table(all_results, cfg)}
 {price_table(all_results, cfg)}
 <h2>Per-event detail</h2>
 {''.join(cards)}
