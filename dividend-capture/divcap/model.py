@@ -197,10 +197,17 @@ def analyze_event(ticker, ev, bars, candles, funding, cfg):
     if perp:
         stock_leg = P_exit_stock - P_entry
         perp_leg = perp["entry"] - perp["exit"]
+        net = stock_leg + perp_leg + net_div          # price legs + dividend
+        # funding and fees per share (from the notional-level B strategy / qty)
+        b = strat.get("B_delta_neutral", {})
+        funding_ps = (b.get("funding", 0.0)) / qty
+        fees_ps = (b.get("fees", 0.0)) / qty          # already negative
         ps = {
-            "stock_leg": stock_leg, "perp_leg": perp_leg,
+            "stock_leg": stock_leg, "perp_leg": perp_leg, "dividend": net_div,
             "gross": stock_leg + perp_leg + div,
-            "net": stock_leg + perp_leg + net_div,   # dividend net of WHT
+            "net": net,                               # before funding/fees
+            "funding": funding_ps, "fees": fees_ps,
+            "full_net": net + funding_ps + fees_ps,   # everything included
         }
 
     return {

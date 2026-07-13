@@ -192,24 +192,26 @@ def price_table(all_results, cfg):
             rows.append(
                 f'<tr><td>{r["ticker"]} {r["ex_date"]}</td>'
                 f'<td class="num">${r["dividend"]:.2f}</td>'
-                f'<td class="num">{r["price_entry"]:.2f}</td>'
-                f'<td class="num">{r["price_exit"]:.2f}</td>'
-                f'<td class="num">{p["entry"]:.2f}</td>'
-                f'<td class="num">{p["exit"]:.2f}</td>'
-                f'<td class="num {_cls(ps["net"])}">{ps["net"]:+.2f}</td>'
-                f'<td class="num {_cls(ps["net"]*qty)}">{_money(ps["net"]*qty)}</td></tr>')
+                f'<td class="num">{r["price_entry"]:.2f}&rarr;{r["price_exit"]:.2f}</td>'
+                f'<td class="num">{p["entry"]:.2f}&rarr;{p["exit"]:.2f}</td>'
+                f'<td class="num">{ps["net"]:+.2f}</td>'
+                f'<td class="num">{ps["funding"]:+.3f}</td>'
+                f'<td class="num">{ps["fees"]:+.3f}</td>'
+                f'<td class="num {_cls(ps["full_net"])}">{ps["full_net"]:+.2f}</td>'
+                f'<td class="num {_cls(ps["full_net"]*qty)}">{_money(ps["full_net"]*qty)}</td></tr>')
     if not rows:
         return ""
     return f"""
-    <h2>Prices &amp; corrected delta-neutral P&amp;L</h2>
-    <p class="muted small">P&amp;L/share = (stock after − stock before) + (perp before − perp after)
-      + net dividend. Long-stock leg gains when the stock rises; short-perp leg gains when the
-      perp falls. The last column scales that to {_money(N)} of stock at entry.</p>
+    <h2>Prices &amp; full delta-neutral P&amp;L</h2>
+    <p class="muted small">Everything per share of stock, hold across the ex-date.
+      <b>Price+Div</b> = (stock after − before) + (perp before − after) + net dividend.
+      <b>Full net</b> = Price+Div + funding + fees (maker {cfg['perp_maker_bps']}bps/side).
+      The last column scales Full net to {_money(N)} of stock at entry.</p>
     <table class="pnl"><thead><tr>
       <th>Ticker / ex-date</th><th>Div</th>
-      <th>Stock before</th><th>Stock after</th>
-      <th>Perp before</th><th>Perp after</th>
-      <th>P&amp;L / share</th><th>P&amp;L / {_money(N)}</th>
+      <th>Stock (bef&rarr;aft)</th><th>Perp (bef&rarr;aft)</th>
+      <th>Price+Div</th><th>Funding</th><th>Fees</th>
+      <th>Full net / sh</th><th>Full net / {_money(N)}</th>
     </tr></thead><tbody>{''.join(rows)}</tbody></table>"""
 
 

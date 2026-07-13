@@ -78,8 +78,17 @@ Note the **entry-side signs**: you *pay* for the stock (`− stock_before`) and
 *receive* proceeds when shorting the perp (`+ perp_before`). A P&L is always
 *exit − entry*, never a sum of the two basis snapshots — summing them
 double-counts the entry basis (`+ 2·(stock_before − perp_before)`) and is not a
-tradeable result. `pnl_notional_net` scales the per-share figure to `--notional`
-of stock bought at entry.
+tradeable result.
+
+Funding and fees are then added **per share** so one row is the complete net:
+
+```
+Full net / share = P&L/share  +  funding/share  +  fees/share
+```
+
+CSV columns: `pnl_share_priceDiv` (price legs + net dividend), `funding_share`,
+`fees_share` (maker by default, negative), `pnl_share_full` (everything), and
+`pnl_notional_full` (scaled to `--notional` of stock at entry).
 
 ## How each event is measured
 
