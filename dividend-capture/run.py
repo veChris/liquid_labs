@@ -26,7 +26,7 @@ OUT = os.path.join(HERE, "out")
 def parse_args(argv):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--tickers", default="MSFT,AAPL,NVDA,COIN,MSTR",
+    ap.add_argument("--tickers", default="STRC,MSFT,AAPL,NVDA,GOOGL,MSTR,COIN",
                     help="comma list; only tickers with a Hyperliquid equity perp are analysed")
     ap.add_argument("--notional", type=float, default=100_000)
     ap.add_argument("--wht", type=float, default=0.15, help="dividend withholding tax fraction")

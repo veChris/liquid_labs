@@ -128,5 +128,38 @@ erfüllt.
 zuerst auf Titeln mit **echter, fetter Dividende (≥ 1,5 %)** und dokumentiertem,
 sauberem Perp-Tracking testen — sonst ist es teures Rauschen.
 
+---
+
+## Addendum: STRC (Strategy „Stretch"-Vorzugsaktie) — der einzige Kandidat
+
+STRC ist auf dem `xyz`-Dex gelistet und ist strukturell der beste Kandidat:
+**monatliche Dividende ~$0,96 auf ~$87 = ~1,1 %/Monat (~13 % p.a.)**, also
+5–10× die Big-Tech-Rendite und **12 statt 4 Events/Jahr**.
+
+**Aber es reicht (noch) nicht:**
+
+- **Perp zu neu:** Coverage erst ab 22.06.2026 (~3 Wochen, 500 Std). Nur **ein**
+  Ex-Termin (30.06.) ist backtestbar — statistisch wertlos.
+- **Das eine Event verlor Geld:** STRC fiel $83,67 → $80,99 (**−3,2 %**) bei nur
+  $0,48 Dividende. Full net **−$390** / $100k.
+- **Kein stabiles Par-Papier:** trotz $100-Ziel lief STRC über das Jahr
+  $74,57–$100,07 (25 % Spanne), Tages-Vola **1,38 %/Tag**. Damit ist selbst die
+  fette 1,1%-Dividende nur **~0,8× so groß wie der Übernacht-Move** — Signal/Noise
+  weiter unter 1 (Big Tech lag bei ~0,2×).
+
+**Einordnung:** STRC ist ~4× besser als Big Tech, aber pro Event immer noch nicht
+über der Schwelle. Der einzige Hoffnungsträger ist die **Basis-Stabilität**: beim
+einen Event fielen Aktie (−$2,68) und Perp (−$2,13) fast im Gleichschritt, der
+Basis-Rest war klein. Wenn der Perp STRC eng trackt, *könnte* die 1,1%-Dividende
+delta-neutral durchkommen. Das lässt sich aber erst mit 4–6 abgedeckten Terminen
+seriös messen.
+
+**Empfehlung STRC:** beobachten, nicht handeln. STRC ist ab sofort in der
+Default-Tickerliste (`run.py`) — das Modell sammelt mit jedem Monatstermin
+automatisch mehr Daten. In ~4–6 Monaten erneut auswerten; erst dann ist ein
+Urteil über die Basis-Stabilität möglich.
+
+---
+
 *Alle Zahlen aus `out/events.csv` / `out/report.html`. Educational, keine
 Anlageberatung.*
