@@ -126,6 +126,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       padding: 28px 7%;
       border-top: 1px solid var(--border);
       font-size: 0.8rem;
@@ -138,6 +140,16 @@
       font-size: 0.85rem;
       color: var(--text);
       text-decoration: none;
+    }
+
+    .footer-legal {
+      width: 100%;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.6;
+      opacity: 0.7;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
     }
 
     @media (max-width: 600px) {
@@ -172,7 +184,7 @@
     <h1>Privacy Policy</h1>
     <p class="effective-date">Effective date: October 13, 2026</p>
 
-    <p>Liquid Labs ("we", "us", or "our") operates the liquid-labs.xyz website and related products. This Privacy Policy explains how we collect, use, and protect information when you use our services.</p>
+    <p>Liquid Labs Corp. ("we", "us", or "our") operates the liquid-labs.xyz website and related products. This Privacy Policy explains how we collect, use, and protect information when you use our services.</p>
 
     <h2>1. Information We Collect</h2>
     <p>We may collect the following types of information:</p>
@@ -221,7 +233,8 @@
 
   <footer>
     <span class="footer-wordmark">Liquid Labs</span>
-    <span>© 2026 Liquid Labs</span>
+    <span>© 2026 Liquid Labs Corp.</span>
+    <p class="footer-legal">Liquid Labs Corp., a company incorporated in the British Virgin Islands, company number 2155916. Registered office: Trinity Chambers, Ora et Labora Building, Wickhams Cay II, Road Town, Tortola, VG1110, British Virgin Islands.</p>
   </footer>
 
 </body>
